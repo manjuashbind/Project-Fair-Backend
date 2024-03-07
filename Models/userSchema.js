@@ -14,11 +14,13 @@ const userSchema=new mongoose.Schema({
         required:true
     },
     github:{     
-           type:String
+           type:String,
+           required:true
         
     },
     link:{
-        type:String
+        type:String,
+        required:true
       
     },
     profile:{

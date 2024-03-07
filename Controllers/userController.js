@@ -11,7 +11,8 @@ const jwt=require('jsonwebtoken')
 exports.register=async(req,res)=>{
     console.log("inside register function");
 
-    const{username,email,password}=req.body
+    const{username,email,password,github,link}=req.body
+    console.log(username,email,password,github,link);
     try{
 
                 //if check the email is already in db ->user already regiaterd
@@ -21,7 +22,7 @@ exports.register=async(req,res)=>{
         }
         else{
             const newUser=await users({
-                username,email,password,github:"",link:"",profile:""
+                username,email,password,github,link,profile:""
             })
             await newUser.save()//save data to databaseres
             res.status(200).json("User registration Successfull")
@@ -31,7 +32,7 @@ exports.register=async(req,res)=>{
         res.status(500).json("Server error"+ err.message)
     }
 
-    console.log(`${username} ${email} ${password}`);
+    console.log(`${username} ${email} ${password} ${github} ${link}`);
     // res.status(200).json("Register request Received")
 }
 
